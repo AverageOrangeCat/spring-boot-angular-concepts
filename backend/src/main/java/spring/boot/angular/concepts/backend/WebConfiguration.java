@@ -1,4 +1,4 @@
-package GROUP_ID.backend;
+package spring.boot.angular.concepts.backend;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;

@@ -1,4 +1,4 @@
-package GROUP_ID.backend;
+package spring.boot.angular.concepts.backend;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import GROUP_ID.backend.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {

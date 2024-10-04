@@ -1,4 +1,4 @@
-package GROUP_ID.backend.exceptions;
+package spring.boot.angular.concepts.backend.exceptions;
 
 public class NotFoundException extends Exception {
 

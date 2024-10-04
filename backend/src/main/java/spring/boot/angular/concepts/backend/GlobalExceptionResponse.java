@@ -1,4 +1,4 @@
-package GROUP_ID.backend;
+package spring.boot.angular.concepts.backend;
 
 import org.springframework.http.HttpStatus;
 
