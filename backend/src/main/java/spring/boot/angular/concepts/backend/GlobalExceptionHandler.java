@@ -28,11 +28,15 @@ public class GlobalExceptionHandler {
             .setMessage("An error occured: " + exception.getMessage());
     }
 
-    // Send not found resource requests to the frontend and let it deal with it
+    // Return error for not found resource requests
+    // Normally would be forwarded to frontend application
 
     @ExceptionHandler(NoResourceFoundException.class)
-    public ModelAndView handleNoResourceFoundException(Exception exception) {
-        return new ModelAndView("forward:/index.html");
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public GlobalExceptionResponse handleNoResourceFoundException(Exception exception) {
+        return new GlobalExceptionResponse()
+            .setHttpStatus(HttpStatus.NOT_FOUND)
+            .setMessage("This application doesn't have a frontend");
     }
 
 }
