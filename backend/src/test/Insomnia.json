@@ -1,0 +1,208 @@
+{
+  "_type": "export",
+  "__export_format": 4,
+  "__export_date": "2024-10-13T18:21:39.862Z",
+  "__export_source": "insomnia.desktop.app:v2023.5.8",
+  "resources": [
+    {
+      "_id": "req_eb12030d352c4fd2a25ef87927af3f5b",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728843253092,
+      "created": 1728760907420,
+      "url": "http://localhost:8080/api/credential/example@example.com",
+      "name": "/api/credential/{email}",
+      "description": "",
+      "method": "GET",
+      "body": {},
+      "parameters": [],
+      "headers": [{ "name": "User-Agent", "value": "insomnia/2023.5.8" }],
+      "authentication": {},
+      "metaSortKey": -1728760907420,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "parentId": null,
+      "modified": 1728760838177,
+      "created": 1728760838177,
+      "name": "Spring Boot + Angular Concepts",
+      "description": "",
+      "scope": "collection",
+      "_type": "workspace"
+    },
+    {
+      "_id": "req_75847b9ab2154a44b14b433ead797435",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728834463219,
+      "created": 1728764596045,
+      "url": "http://localhost:8080/api/credential/create",
+      "name": "/api/credential/create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"example@example.com\",\n\n  \"password\": \"examplePassword123\",\n\n  \"firstName\": \"John\",\n\n  \"lastName\": \"Doe\",\n\n  \"birthDate\": \"1990-01-01\",\n\n  \"address\": \"123 Main Street\",\n\n  \"houseNumber\": \"12A\",\n\n  \"postalCode\": \"12345\",\n\n  \"city\": \"Sample City\",\n\n  \"country\": \"Sample Country\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1727900757997.5,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_1d0697c180fd40fb8cc76b606d35b7af",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728843668696,
+      "created": 1728834324671,
+      "url": "http://localhost:8080/api/credential/update",
+      "name": "/api/credential/update",
+      "description": "",
+      "method": "PUT",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"accessToken\": \"...\",\n\n  \"email\": \"newemail@example.com\",\n\n  \"address\": \"456 Elm Street\",\n\n  \"houseNumber\": \"34B\",\n\n  \"postalCode\": \"67890\",\n\n  \"city\": \"New City\",\n\n  \"country\": \"New Country\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1727685720641.875,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_d3a5ba83d4da4be19f344bedc430f729",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728843672753,
+      "created": 1728843314941,
+      "url": "http://localhost:8080/api/credential/delete",
+      "name": "/api/credential/delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"accessToken\": \"...\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1727578201964.0625,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_63787d0f0fea4fac82711e88981c4e9b",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728834465378,
+      "created": 1728765475466,
+      "url": "http://localhost:8080/api/session/create",
+      "name": "/api/session/create",
+      "description": "",
+      "method": "POST",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n  \"email\": \"example@example.com\",\n\n  \"password\": \"examplePassword123\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1727470683286.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "req_cfcb834282054ddaac120601ff26cf23",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728843678545,
+      "created": 1728843377168,
+      "url": "http://localhost:8080/api/session/delete",
+      "name": "/api/session/delete",
+      "description": "",
+      "method": "DELETE",
+      "body": {
+        "mimeType": "application/json",
+        "text": "{\n\t\"accessToken\": \"...\"\n}\n"
+      },
+      "parameters": [],
+      "headers": [
+        { "name": "Content-Type", "value": "application/json" },
+        { "name": "User-Agent", "value": "insomnia/2023.5.8" }
+      ],
+      "authentication": {},
+      "metaSortKey": -1727470683186.25,
+      "isPrivate": false,
+      "settingStoreCookies": true,
+      "settingSendCookies": true,
+      "settingDisableRenderRequestBody": false,
+      "settingEncodeUrl": true,
+      "settingRebuildPath": true,
+      "settingFollowRedirects": "global",
+      "_type": "request"
+    },
+    {
+      "_id": "env_3c98b5aeae66e5235e449e30ce69340e7e69229a",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728760838179,
+      "created": 1728760838179,
+      "name": "Base Environment",
+      "data": {},
+      "dataPropertyOrder": null,
+      "color": null,
+      "isPrivate": false,
+      "metaSortKey": 1728760838179,
+      "_type": "environment"
+    },
+    {
+      "_id": "jar_3c98b5aeae66e5235e449e30ce69340e7e69229a",
+      "parentId": "wrk_a82a5c0382a046728bce80324fc5beef",
+      "modified": 1728760838180,
+      "created": 1728760838180,
+      "name": "Default Jar",
+      "cookies": [],
+      "_type": "cookie_jar"
+    }
+  ]
+}

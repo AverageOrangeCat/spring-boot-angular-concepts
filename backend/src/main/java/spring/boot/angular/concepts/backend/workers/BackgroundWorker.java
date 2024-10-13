@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class BackgroundWorker extends Thread {
 
-    private Logger logger = LoggerFactory.getLogger(BackgroundWorker.class);
+    private final Logger logger = LoggerFactory.getLogger(BackgroundWorker.class);
 
     @Override
     public void run() {
