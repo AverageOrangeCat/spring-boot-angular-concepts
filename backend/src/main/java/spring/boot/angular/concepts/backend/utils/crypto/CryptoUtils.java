@@ -1,6 +1,6 @@
 package spring.boot.angular.concepts.backend.utils.crypto;
 
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
@@ -13,7 +13,9 @@ import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
 
 public class CryptoUtils {
 
-    private static final Logger logger = LoggerFactory.getLogger(CryptoUtils.class);
+    private static final HexFormat HEX_FORMAT = HexFormat.of();
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(CryptoUtils.class);
 
     public static String generateSecureRandomBytes(Integer size) throws InternalServerException {
         try {
@@ -23,37 +25,59 @@ public class CryptoUtils {
             var bytes = new byte[size / 2];
 
             SecureRandom
-                    .getInstance("NativePRNG")
+                    .getInstance("NativePRNGBlocking")
                     .nextBytes(bytes);
 
-            return HexFormat
-                    .of()
-                    .formatHex(bytes);
+            return HEX_FORMAT.formatHex(bytes);
 
         } catch (NoSuchAlgorithmException exception) {
-            logger.warn(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
         }
     }
 
     public static String generateSha256Hash(String text) throws InternalServerException {
         try {
-            var bytes = text.getBytes("UTF-8");
+            var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
                     .getInstance("SHA-256")
                     .digest(bytes);
 
-            return HexFormat
-                    .of()
-                    .formatHex(hash);
+            return HEX_FORMAT.formatHex(hash);
 
         } catch (NoSuchAlgorithmException exception) {
-            logger.warn(exception.getMessage(), exception);
+            LOGGER.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
+        }
+    }
 
-        } catch (UnsupportedEncodingException exception) {
-            logger.warn(exception.getMessage(), exception);
-            throw new InternalServerException("A invalid encoding type has been used");
+    public static String generateSha384Hash(String text) throws InternalServerException {
+        try {
+            var bytes = text.getBytes(StandardCharsets.UTF_8);
+            var hash = MessageDigest
+                    .getInstance("SHA-384")
+                    .digest(bytes);
+
+            return HEX_FORMAT.formatHex(hash);
+
+        } catch (NoSuchAlgorithmException exception) {
+            LOGGER.error(exception.getMessage(), exception);
+            throw new InternalServerException("A invalid algorithm has been used");
+        }
+    }
+
+    public static String generateSha512Hash(String text) throws InternalServerException {
+        try {
+            var bytes = text.getBytes(StandardCharsets.UTF_8);
+            var hash = MessageDigest
+                    .getInstance("SHA-512")
+                    .digest(bytes);
+
+            return HEX_FORMAT.formatHex(hash);
+
+        } catch (NoSuchAlgorithmException exception) {
+            LOGGER.error(exception.getMessage(), exception);
+            throw new InternalServerException("A invalid algorithm has been used");
         }
     }
 
