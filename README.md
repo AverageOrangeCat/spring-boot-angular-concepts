@@ -10,7 +10,6 @@ This is the concepts platform for the spring boot 🌿 + angular template.
 
 - PostgreSQL 16
 - OpenJDK 22.0.2
-- Angular 18.2.0
 - Docker Compose version v2.29.1-desktop.1
 
 ### Build
