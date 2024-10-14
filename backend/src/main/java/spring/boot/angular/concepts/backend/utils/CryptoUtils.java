@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.utils.crypto;
+package spring.boot.angular.concepts.backend.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -13,9 +13,9 @@ import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
 
 public class CryptoUtils {
 
-    private static final HexFormat HEX_FORMAT = HexFormat.of();
+    private static final HexFormat hexFormat = HexFormat.of();
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CryptoUtils.class);
+    private static final Logger logger = LoggerFactory.getLogger(CryptoUtils.class);
 
     public static String generateSecureRandomBytes(Integer size) throws InternalServerException {
         try {
@@ -28,10 +28,10 @@ public class CryptoUtils {
                     .getInstance("NativePRNGBlocking")
                     .nextBytes(bytes);
 
-            return HEX_FORMAT.formatHex(bytes);
+            return hexFormat.formatHex(bytes);
 
         } catch (NoSuchAlgorithmException exception) {
-            LOGGER.error(exception.getMessage(), exception);
+            logger.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
         }
     }
@@ -40,13 +40,13 @@ public class CryptoUtils {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
-                    .getInstance("SHA-256")
+                    .getInstance("SHA3-256")
                     .digest(bytes);
 
-            return HEX_FORMAT.formatHex(hash);
+            return hexFormat.formatHex(hash);
 
         } catch (NoSuchAlgorithmException exception) {
-            LOGGER.error(exception.getMessage(), exception);
+            logger.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
         }
     }
@@ -55,13 +55,13 @@ public class CryptoUtils {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
-                    .getInstance("SHA-384")
+                    .getInstance("SHA3-384")
                     .digest(bytes);
 
-            return HEX_FORMAT.formatHex(hash);
+            return hexFormat.formatHex(hash);
 
         } catch (NoSuchAlgorithmException exception) {
-            LOGGER.error(exception.getMessage(), exception);
+            logger.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
         }
     }
@@ -70,13 +70,13 @@ public class CryptoUtils {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
-                    .getInstance("SHA-512")
+                    .getInstance("SHA3-512")
                     .digest(bytes);
 
-            return HEX_FORMAT.formatHex(hash);
+            return hexFormat.formatHex(hash);
 
         } catch (NoSuchAlgorithmException exception) {
-            LOGGER.error(exception.getMessage(), exception);
+            logger.error(exception.getMessage(), exception);
             throw new InternalServerException("A invalid algorithm has been used");
         }
     }

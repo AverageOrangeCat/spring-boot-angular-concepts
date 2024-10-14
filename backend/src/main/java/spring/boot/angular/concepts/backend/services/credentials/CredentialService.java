@@ -9,7 +9,7 @@ import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
 import spring.boot.angular.concepts.backend.exceptions.UnauthorizedException;
 import spring.boot.angular.concepts.backend.repositories.CredentialRepository;
 import spring.boot.angular.concepts.backend.repositories.SessionRepository;
-import spring.boot.angular.concepts.backend.utils.crypto.CryptoUtils;
+import spring.boot.angular.concepts.backend.utils.CryptoUtils;
 
 @Service
 public class CredentialService {
