@@ -7,7 +7,7 @@ CREATE TABLE sessions (
 
     -- session data
 
-    "access_token" VARCHAR(128) UNIQUE NOT NULL,
+    "authentication_token" VARCHAR(128) UNIQUE NOT NULL,
 
     "expiration_date" DATE NOT NULL,
 

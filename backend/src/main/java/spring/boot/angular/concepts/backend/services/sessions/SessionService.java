@@ -35,13 +35,13 @@ public class SessionService {
                 throw new UnauthorizedException("Invalid login attempt");
             }
 
-            var accessToken = CryptoUtils.generateSecureRandomBytes(128);
+            var authenticationToken = CryptoUtils.generateSecureRandomBytes(128);
             var sessionView = new SessionView();
             var sessionModel = new SessionModel();
 
             sessionView.setCredentialView(credentialView);
 
-            sessionView.setAccessToken(accessToken);
+            sessionView.setAuthenticationToken(authenticationToken);
 
             sessionView.setExpirationDate(new Date(0L));
 
@@ -49,7 +49,7 @@ public class SessionService {
 
             sessionView = sessionRepository.createSession(sessionView);
 
-            sessionModel.setAccessToken(sessionView.getAccessToken());
+            sessionModel.setAuthenticationToken(sessionView.getAuthenticationToken());
 
             sessionModel.setExpirationDate(sessionView.getExpirationDate());
 
@@ -64,12 +64,12 @@ public class SessionService {
 
     public SessionModel deleteSession(SessionDeleteModel sessionDeleteModel) throws UnauthorizedException, InternalServerException {
         try {
-            var sessionView = sessionRepository.getSession(sessionDeleteModel.getAccessToken());
+            var sessionView = sessionRepository.getSession(sessionDeleteModel.getAuthenticationToken());
             var sessionModel = new SessionModel();
 
             sessionView = sessionRepository.deleteSession(sessionView);
 
-            sessionModel.setAccessToken(sessionView.getAccessToken());
+            sessionModel.setAuthenticationToken(sessionView.getAuthenticationToken());
 
             sessionModel.setExpirationDate(sessionView.getExpirationDate());
 

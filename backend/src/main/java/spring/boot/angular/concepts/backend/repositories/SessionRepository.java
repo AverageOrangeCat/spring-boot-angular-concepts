@@ -57,7 +57,7 @@ public class SessionRepository {
 
         sessionView.setCredentialView(credentialView);
 
-        sessionView.setAccessToken(resultSet.getString("access_token"));
+        sessionView.setAuthenticationToken(resultSet.getString("authentication_token"));
 
         sessionView.setExpirationDate(resultSet.getDate("expiration_date"));
 
@@ -66,19 +66,19 @@ public class SessionRepository {
         return sessionView;
     };
 
-    public SessionView getSession(String accessToken) throws NotFoundException, InternalServerException {
+    public SessionView getSession(String authenticationToken) throws NotFoundException, InternalServerException {
         var query = """
                 SELECT * FROM sessions
                 LEFT JOIN credentials ON sessions.credential_id = credentials.credential_id
-                WHERE access_token = ?
+                WHERE authentication_token = ?
                 """;
 
         try {
-            return jdbcTemplate.queryForObject(query, rowMapper, accessToken);
+            return jdbcTemplate.queryForObject(query, rowMapper, authenticationToken);
 
         } catch (EmptyResultDataAccessException exception) {
             logger.warn(exception.getMessage(), exception);
-            throw new NotFoundException("Could not find session: '" + accessToken + "'");
+            throw new NotFoundException("Could not find session: '" + authenticationToken + "'");
 
         } catch (DataAccessException exception) {
             logger.error(exception.getMessage(), exception);
@@ -92,7 +92,7 @@ public class SessionRepository {
                     INSERT INTO sessions (
                         credential_id,
 
-                        access_token,
+                        authentication_token,
 
                         expiration_date,
 
@@ -108,7 +108,7 @@ public class SessionRepository {
 
         logger.debug("credential_id: " + sessionView.getCredentialView().getId(), sessionView);
 
-        logger.debug("access_token: " + sessionView.getAccessToken(), sessionView);
+        logger.debug("authentication_token: " + sessionView.getAuthenticationToken(), sessionView);
 
         logger.debug("expiration_date: " + sessionView.getExpirationDate(), sessionView);
 
@@ -121,7 +121,7 @@ public class SessionRepository {
                             .getCredentialView()
                             .getId(),
 
-                    sessionView.getAccessToken(),
+                    sessionView.getAuthenticationToken(),
 
                     sessionView.getExpirationDate(),
 
@@ -129,7 +129,7 @@ public class SessionRepository {
 
         } catch (DataIntegrityViolationException exception) {
             logger.error(exception.getMessage(), exception);
-            throw new ConflictException("Session '" + sessionView.getAccessToken() + "' already exists");
+            throw new ConflictException("Session '" + sessionView.getAuthenticationToken() + "' already exists");
 
         } catch (EmptyResultDataAccessException exception) {
             logger.error(exception.getMessage(), exception);
@@ -145,10 +145,10 @@ public class SessionRepository {
         var query = """
                 WITH returning_sessions AS (
                     UPDATE sessions SET
-                    
+
                     credential_id = COALESCE(?, credential_id),
 
-                    access_token = COALESCE(?, access_token),
+                    authentication_token = COALESCE(?, authentication_token),
 
                     expiration_date = COALESCE(?, expiration_date),
 
@@ -169,7 +169,7 @@ public class SessionRepository {
                             .getCredentialView()
                             .getId(),
 
-                    sessionView.getAccessToken(),
+                    sessionView.getAuthenticationToken(),
 
                     sessionView.getExpirationDate(),
 
@@ -179,7 +179,7 @@ public class SessionRepository {
 
         } catch (DataIntegrityViolationException exception) {
             logger.error(exception.getMessage(), exception);
-            throw new ConflictException("Session '" + sessionView.getAccessToken() + "' already exists");
+            throw new ConflictException("Session '" + sessionView.getAuthenticationToken() + "' already exists");
 
         } catch (EmptyResultDataAccessException exception) {
             logger.error(exception.getMessage(), exception);

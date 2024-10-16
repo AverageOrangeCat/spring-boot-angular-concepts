@@ -11,7 +11,7 @@ public class SessionView {
 
     private CredentialView credentialView;
 
-    private String accessToken;
+    private String authenticationToken;
 
     private Date expirationDate;
 
@@ -33,12 +33,12 @@ public class SessionView {
         this.credentialView = credentialView;
     }
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getAuthenticationToken() {
+        return authenticationToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setAuthenticationToken(String authenticationToken) {
+        this.authenticationToken = authenticationToken;
     }
 
     public Date getExpirationDate() {

@@ -5,18 +5,18 @@ import java.sql.Time;
 
 public class SessionModel {
     
-    private String accessToken;
+    private String authenticationToken;
 
     private Date expirationDate;
 
     private Time expirationTime;
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getAuthenticationToken() {
+        return authenticationToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setAuthenticationToken(String authenticationToken) {
+        this.authenticationToken = authenticationToken;
     }
 
     public Date getExpirationDate() {

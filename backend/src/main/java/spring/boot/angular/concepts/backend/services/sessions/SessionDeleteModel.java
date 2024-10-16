@@ -2,14 +2,14 @@ package spring.boot.angular.concepts.backend.services.sessions;
 
 public class SessionDeleteModel {
     
-    private String accessToken;
+    private String authenticationToken;
 
-    public String getAccessToken() {
-        return accessToken;
+    public String getAuthenticationToken() {
+        return authenticationToken;
     }
 
-    public void setAccessToken(String accessToken) {
-        this.accessToken = accessToken;
+    public void setAuthenticationToken(String authenticationToken) {
+        this.authenticationToken = authenticationToken;
     }
 
 }

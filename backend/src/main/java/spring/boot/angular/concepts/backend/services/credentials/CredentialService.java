@@ -20,31 +20,6 @@ public class CredentialService {
     @Autowired
     private SessionRepository sessionRepository;
 
-    public CredentialModel getCredential(String email) throws NotFoundException, InternalServerException {
-        var credentialView = credentialRepository.getCredential(email);
-        var credentialModel = new CredentialModel();
-
-        credentialModel.setEmail(credentialView.getEmail());
-
-        credentialModel.setFirstName(credentialView.getFirstName());
-
-        credentialModel.setLastName(credentialView.getLastName());
-
-        credentialModel.setBirthDate(credentialView.getBirthDate());
-
-        credentialModel.setAddress(credentialView.getAddress());
-
-        credentialModel.setHouseNumber(credentialView.getHouseNumber());
-
-        credentialModel.setPostalCode(credentialView.getPostalCode());
-
-        credentialModel.setCity(credentialView.getCity());
-
-        credentialModel.setCountry(credentialView.getCountry());
-
-        return credentialModel;
-    }
-
     public CredentialModel createCredential(CredentialCreateModel credentialCreateModel)
             throws ConflictException, InternalServerException {
 
@@ -102,7 +77,7 @@ public class CredentialService {
             throws UnauthorizedException, ConflictException, InternalServerException {
 
         try {
-            var sessionView = sessionRepository.getSession(credentialUpdateModel.getAccessToken());
+            var sessionView = sessionRepository.getSession(credentialUpdateModel.getAuthenticationToken());
             var credentialView = sessionView.getCredentialView();
             var credentialModel = new CredentialModel();
 
@@ -164,7 +139,7 @@ public class CredentialService {
             throws UnauthorizedException, InternalServerException {
 
         try {
-            var sessionView = sessionRepository.getSession(credentialDeleteModel.getAccessToken());
+            var sessionView = sessionRepository.getSession(credentialDeleteModel.getAuthenticationToken());
             var credentialView = sessionView.getCredentialView();
             var credentialModel = new CredentialModel();
 
@@ -193,6 +168,33 @@ public class CredentialService {
         } catch (NotFoundException exception) {
             throw new UnauthorizedException("Authentication failed");
         }
+    }
+
+    public CredentialModel getCredential(CredentialGetModel credentialGetModel)
+            throws NotFoundException, InternalServerException {
+
+        var credentialView = credentialRepository.getCredential(credentialGetModel.getEmail());
+        var credentialModel = new CredentialModel();
+
+        credentialModel.setEmail(credentialView.getEmail());
+
+        credentialModel.setFirstName(credentialView.getFirstName());
+
+        credentialModel.setLastName(credentialView.getLastName());
+
+        credentialModel.setBirthDate(credentialView.getBirthDate());
+
+        credentialModel.setAddress(credentialView.getAddress());
+
+        credentialModel.setHouseNumber(credentialView.getHouseNumber());
+
+        credentialModel.setPostalCode(credentialView.getPostalCode());
+
+        credentialModel.setCity(credentialView.getCity());
+
+        credentialModel.setCountry(credentialView.getCountry());
+
+        return credentialModel;
     }
 
 }

@@ -1,11 +1,9 @@
-package spring.boot.angular.concepts.backend.services.credentials;
+package spring.boot.angular.concepts.backend.controllers.credentials;
 
 import java.sql.Date;
 
-public class CredentialUpdateModel {
-
-    private String authenticationToken;
-
+public class CredentialCreateForm {
+    
     private String email;
 
     private String password;
@@ -25,14 +23,6 @@ public class CredentialUpdateModel {
     private String city;
 
     private String country;
-
-    public String getAuthenticationToken() {
-        return authenticationToken;
-    }
-
-    public void setAuthenticationToken(String authenticationToken) {
-        this.authenticationToken = authenticationToken;
-    }
 
     public String getEmail() {
         return email;
