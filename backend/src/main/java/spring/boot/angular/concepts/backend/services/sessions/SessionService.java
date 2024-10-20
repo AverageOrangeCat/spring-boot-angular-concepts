@@ -18,6 +18,9 @@ import spring.boot.angular.concepts.backend.utils.CryptoUtils;
 public class SessionService {
 
     @Autowired
+    private CryptoUtils cryptoUtils;
+
+    @Autowired
     private SessionRepository sessionRepository;
 
     @Autowired
@@ -28,14 +31,14 @@ public class SessionService {
 
         try {
             var credentialView = credentialRepository.getCredential(sessionCreateModel.getEmail());
-            var passwordHash = CryptoUtils
+            var passwordHash = cryptoUtils
                     .generateSha256Hash(credentialView.getPasswordSalt() + sessionCreateModel.getPassword());
 
             if (!credentialView.getPasswordHash().equals(passwordHash)) {
                 throw new UnauthorizedException("Invalid login attempt");
             }
 
-            var authenticationToken = CryptoUtils.generateSecureRandomBytes(128);
+            var authenticationToken = cryptoUtils.generateSecureRandomBytes(128);
             var sessionView = new SessionView();
             var sessionModel = new SessionModel();
 
@@ -62,7 +65,9 @@ public class SessionService {
         }
     }
 
-    public SessionModel deleteSession(SessionDeleteModel sessionDeleteModel) throws UnauthorizedException, InternalServerException {
+    public SessionModel deleteSession(SessionDeleteModel sessionDeleteModel)
+            throws UnauthorizedException, InternalServerException {
+
         try {
             var sessionView = sessionRepository.getSession(sessionDeleteModel.getAuthenticationToken());
             var sessionModel = new SessionModel();

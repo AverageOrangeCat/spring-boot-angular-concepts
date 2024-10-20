@@ -15,16 +15,46 @@ import spring.boot.angular.concepts.backend.utils.CryptoUtils;
 public class CredentialService {
 
     @Autowired
+    private CryptoUtils cryptoUtils;
+
+    @Autowired
     private CredentialRepository credentialRepository;
 
     @Autowired
     private SessionRepository sessionRepository;
 
+    public CredentialModel getCredential(CredentialGetModel credentialGetModel)
+            throws NotFoundException, InternalServerException {
+
+        var credentialView = credentialRepository.getCredential(credentialGetModel.getEmail());
+        var credentialModel = new CredentialModel();
+
+        credentialModel.setEmail(credentialView.getEmail());
+
+        credentialModel.setFirstName(credentialView.getFirstName());
+
+        credentialModel.setLastName(credentialView.getLastName());
+
+        credentialModel.setBirthDate(credentialView.getBirthDate());
+
+        credentialModel.setAddress(credentialView.getAddress());
+
+        credentialModel.setHouseNumber(credentialView.getHouseNumber());
+
+        credentialModel.setPostalCode(credentialView.getPostalCode());
+
+        credentialModel.setCity(credentialView.getCity());
+
+        credentialModel.setCountry(credentialView.getCountry());
+
+        return credentialModel;
+    }
+
     public CredentialModel createCredential(CredentialCreateModel credentialCreateModel)
             throws ConflictException, InternalServerException {
 
-        var passwordSalt = CryptoUtils.generateSecureRandomBytes(16);
-        var passwordHash = CryptoUtils.generateSha256Hash(passwordSalt + credentialCreateModel.getPassword());
+        var passwordSalt = cryptoUtils.generateSecureRandomBytes(16);
+        var passwordHash = cryptoUtils.generateSha256Hash(passwordSalt + credentialCreateModel.getPassword());
         var credentialView = new CredentialView();
         var credentialModel = new CredentialModel();
 
@@ -82,8 +112,8 @@ public class CredentialService {
             var credentialModel = new CredentialModel();
 
             if (credentialUpdateModel.getPassword() != null) {
-                var passwordSalt = CryptoUtils.generateSecureRandomBytes(16);
-                var passwordHash = CryptoUtils.generateSha256Hash(passwordSalt + credentialUpdateModel.getPassword());
+                var passwordSalt = cryptoUtils.generateSecureRandomBytes(16);
+                var passwordHash = cryptoUtils.generateSha256Hash(passwordSalt + credentialUpdateModel.getPassword());
 
                 credentialView.setPasswordSalt(passwordSalt);
 
@@ -168,33 +198,6 @@ public class CredentialService {
         } catch (NotFoundException exception) {
             throw new UnauthorizedException("Authentication failed");
         }
-    }
-
-    public CredentialModel getCredential(CredentialGetModel credentialGetModel)
-            throws NotFoundException, InternalServerException {
-
-        var credentialView = credentialRepository.getCredential(credentialGetModel.getEmail());
-        var credentialModel = new CredentialModel();
-
-        credentialModel.setEmail(credentialView.getEmail());
-
-        credentialModel.setFirstName(credentialView.getFirstName());
-
-        credentialModel.setLastName(credentialView.getLastName());
-
-        credentialModel.setBirthDate(credentialView.getBirthDate());
-
-        credentialModel.setAddress(credentialView.getAddress());
-
-        credentialModel.setHouseNumber(credentialView.getHouseNumber());
-
-        credentialModel.setPostalCode(credentialView.getPostalCode());
-
-        credentialModel.setCity(credentialView.getCity());
-
-        credentialModel.setCountry(credentialView.getCountry());
-
-        return credentialModel;
     }
 
 }

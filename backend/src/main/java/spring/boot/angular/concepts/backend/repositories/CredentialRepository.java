@@ -141,8 +141,8 @@ public class CredentialRepository {
     public CredentialView updateCredential(CredentialView credentialView)
             throws ConflictException, InternalServerException {
         var query = """
-                UPDATE credentials SET 
-                
+                UPDATE credentials SET
+
                 email = COALESCE(?, email),
 
                 password_salt = COALESCE(?, password_salt),

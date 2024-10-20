@@ -106,14 +106,6 @@ public class SessionRepository {
                 LEFT JOIN credentials ON returning_sessions.credential_id = credentials.credential_id
                 """;
 
-        logger.debug("credential_id: " + sessionView.getCredentialView().getId(), sessionView);
-
-        logger.debug("authentication_token: " + sessionView.getAuthenticationToken(), sessionView);
-
-        logger.debug("expiration_date: " + sessionView.getExpirationDate(), sessionView);
-
-        logger.debug("expiration_time: " + sessionView.getExpirationTime(), sessionView);
-
         try {
             return jdbcTemplate.queryForObject(query, rowMapper,
 

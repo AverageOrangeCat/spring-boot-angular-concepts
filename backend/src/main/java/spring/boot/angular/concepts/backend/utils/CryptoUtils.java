@@ -8,16 +8,18 @@ import java.util.HexFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 
 import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
 
+@Component
 public class CryptoUtils {
 
-    private static final HexFormat hexFormat = HexFormat.of();
+    private final HexFormat hexFormat = HexFormat.of();
 
-    private static final Logger logger = LoggerFactory.getLogger(CryptoUtils.class);
+    private final Logger logger = LoggerFactory.getLogger(CryptoUtils.class);
 
-    public static String generateSecureRandomBytes(Integer size) throws InternalServerException {
+    public String generateSecureRandomBytes(Integer size) throws InternalServerException {
         try {
 
             // Binary to Hex conversion
@@ -36,7 +38,7 @@ public class CryptoUtils {
         }
     }
 
-    public static String generateSha256Hash(String text) throws InternalServerException {
+    public String generateSha256Hash(String text) throws InternalServerException {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
@@ -51,7 +53,7 @@ public class CryptoUtils {
         }
     }
 
-    public static String generateSha384Hash(String text) throws InternalServerException {
+    public String generateSha384Hash(String text) throws InternalServerException {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
@@ -66,7 +68,7 @@ public class CryptoUtils {
         }
     }
 
-    public static String generateSha512Hash(String text) throws InternalServerException {
+    public String generateSha512Hash(String text) throws InternalServerException {
         try {
             var bytes = text.getBytes(StandardCharsets.UTF_8);
             var hash = MessageDigest
