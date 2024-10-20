@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.controllers.sessions;
+package spring.boot.angular.concepts.backend.api.controllers.sessions;
 
 public class SessionCreateForm {
     

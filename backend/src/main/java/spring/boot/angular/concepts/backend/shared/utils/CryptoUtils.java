@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.utils;
+package spring.boot.angular.concepts.backend.shared.utils;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -10,7 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
 
 @Component
 public class CryptoUtils {

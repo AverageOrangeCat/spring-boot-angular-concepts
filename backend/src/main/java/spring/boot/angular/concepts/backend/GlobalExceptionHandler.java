@@ -8,17 +8,17 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
-import spring.boot.angular.concepts.backend.exceptions.ConflictException;
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
-import spring.boot.angular.concepts.backend.exceptions.UnauthorizedException;
-import spring.boot.angular.concepts.backend.repositories.CredentialRepository;
+import spring.boot.angular.concepts.backend.infrastructure.repositories.CredentialRepository;
+import spring.boot.angular.concepts.backend.shared.exceptions.ConflictException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.shared.exceptions.UnauthorizedException;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     private final Logger logger = LoggerFactory.getLogger(CredentialRepository.class);
-    
+
     @ExceptionHandler(UnauthorizedException.class)
     @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public GlobalExceptionResponse handleUnauthorizedException(UnauthorizedException exception) {

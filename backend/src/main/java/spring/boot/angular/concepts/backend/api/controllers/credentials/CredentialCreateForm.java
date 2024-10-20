@@ -1,8 +1,8 @@
-package spring.boot.angular.concepts.backend.controllers.credentials;
+package spring.boot.angular.concepts.backend.api.controllers.credentials;
 
 import java.sql.Date;
 
-public class CredentialUpdateForm {
+public class CredentialCreateForm {
     
     private String email;
 

@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.repositories;
+package spring.boot.angular.concepts.backend.infrastructure.repositories;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,10 +10,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
-import spring.boot.angular.concepts.backend.exceptions.ConflictException;
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialView;
+import spring.boot.angular.concepts.backend.shared.exceptions.ConflictException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
 
 @Repository
 public class CredentialRepository {

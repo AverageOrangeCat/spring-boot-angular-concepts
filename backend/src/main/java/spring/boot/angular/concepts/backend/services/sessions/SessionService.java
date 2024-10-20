@@ -6,13 +6,13 @@ import java.sql.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spring.boot.angular.concepts.backend.exceptions.ConflictException;
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
-import spring.boot.angular.concepts.backend.exceptions.UnauthorizedException;
-import spring.boot.angular.concepts.backend.repositories.CredentialRepository;
-import spring.boot.angular.concepts.backend.repositories.SessionRepository;
-import spring.boot.angular.concepts.backend.utils.CryptoUtils;
+import spring.boot.angular.concepts.backend.infrastructure.repositories.CredentialRepository;
+import spring.boot.angular.concepts.backend.infrastructure.repositories.SessionRepository;
+import spring.boot.angular.concepts.backend.shared.exceptions.ConflictException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.shared.exceptions.UnauthorizedException;
+import spring.boot.angular.concepts.backend.shared.utils.CryptoUtils;
 
 @Service
 public class SessionService {
@@ -25,6 +25,19 @@ public class SessionService {
 
     @Autowired
     private CredentialRepository credentialRepository;
+
+    public SessionModel getSession(SessionGetModel sessionGetModel) throws NotFoundException, InternalServerException {
+        var sessionView = sessionRepository.getSession(sessionGetModel.getAuthenticationToken());
+        var sessionModel = new SessionModel();
+
+        sessionModel.setAuthenticationToken(sessionView.getAuthenticationToken());
+
+        sessionModel.setExpirationDate(sessionView.getExpirationDate());
+
+        sessionModel.setExpirationTime(sessionView.getExpirationTime());
+
+        return sessionModel;
+    }
 
     public SessionModel createSession(SessionCreateModel sessionCreateModel)
             throws UnauthorizedException, ConflictException, InternalServerException {
@@ -62,6 +75,32 @@ public class SessionService {
 
         } catch (NotFoundException exception) {
             throw new UnauthorizedException("Invalid login attempt");
+        }
+    }
+
+    public SessionModel updateSession(SessionUpdateModel sessionUpdateModel)
+            throws UnauthorizedException, ConflictException, InternalServerException {
+
+        try {
+            var sessionView = sessionRepository.getSession(sessionUpdateModel.getAuthenticationToken());
+            var sessionModel = new SessionModel();
+
+            sessionView.setExpirationDate(new Date(0L));
+
+            sessionView.setExpirationTime(new Time(0L));
+
+            sessionView = sessionRepository.updateSession(sessionView);
+
+            sessionModel.setAuthenticationToken(sessionView.getAuthenticationToken());
+
+            sessionModel.setExpirationDate(sessionView.getExpirationDate());
+
+            sessionModel.setExpirationTime(sessionView.getExpirationTime());
+
+            return sessionModel;
+
+        } catch (NotFoundException exception) {
+            throw new UnauthorizedException("Authentication failed");
         }
     }
 

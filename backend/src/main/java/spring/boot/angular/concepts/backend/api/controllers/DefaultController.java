@@ -1,10 +1,10 @@
-package spring.boot.angular.concepts.backend.controllers;
+package spring.boot.angular.concepts.backend.api.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.servlet.http.HttpServletRequest;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
 
 @RestController
 @RequestMapping("/api")

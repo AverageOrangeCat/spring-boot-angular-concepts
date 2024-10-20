@@ -1,7 +1,7 @@
 package spring.boot.angular.concepts.backend.services.sessions;
 
-public class SessionUpdateModel {
-    
+public class SessionGetModel {
+
     private String authenticationToken;
 
     public String getAuthenticationToken() {

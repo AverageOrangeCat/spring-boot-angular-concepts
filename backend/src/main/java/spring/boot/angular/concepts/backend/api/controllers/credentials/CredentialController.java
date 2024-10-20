@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.controllers.credentials;
+package spring.boot.angular.concepts.backend.api.controllers.credentials;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -11,16 +11,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import spring.boot.angular.concepts.backend.exceptions.ConflictException;
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
-import spring.boot.angular.concepts.backend.exceptions.UnauthorizedException;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialCreateModel;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialDeleteModel;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialGetModel;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialModel;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialService;
 import spring.boot.angular.concepts.backend.services.credentials.CredentialUpdateModel;
+import spring.boot.angular.concepts.backend.shared.exceptions.ConflictException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.shared.exceptions.UnauthorizedException;
 
 @RestController
 @RequestMapping("/api/credential")
@@ -45,7 +45,7 @@ public class CredentialController {
     }
 
     @PostMapping("/create")
-    public CredentialModel createCredential(@RequestBody CredentialCreateForm credentialCreateForm)
+    public void createCredential(@RequestBody CredentialCreateForm credentialCreateForm)
             throws NotFoundException, ConflictException, InternalServerException {
 
         var credentialCreateModel = new CredentialCreateModel();
@@ -70,11 +70,11 @@ public class CredentialController {
 
         credentialCreateModel.setCountry(credentialCreateForm.getCountry());
 
-        return credentialService.createCredential(credentialCreateModel);
+        credentialService.createCredential(credentialCreateModel);
     }
 
     @PutMapping("/update")
-    public CredentialModel updateCredential(
+    public void updateCredential(
             @CookieValue("authentication") String authenticationToken,
             @RequestBody CredentialUpdateForm credentialUpdateForm)
             throws UnauthorizedException, ConflictException, InternalServerException {
@@ -103,18 +103,18 @@ public class CredentialController {
 
         credentialUpdateModel.setCountry(credentialUpdateForm.getCountry());
 
-        return credentialService.updateCredential(credentialUpdateModel);
+        credentialService.updateCredential(credentialUpdateModel);
     }
 
     @DeleteMapping("/delete")
-    public CredentialModel deleteCredential(@CookieValue("authentication") String authenticationToken)
+    public void deleteCredential(@CookieValue("authentication") String authenticationToken)
             throws UnauthorizedException, InternalServerException {
 
         var credentialDeleteModel = new CredentialDeleteModel();
 
         credentialDeleteModel.setAuthenticationToken(authenticationToken);
 
-        return credentialService.deleteCredential(credentialDeleteModel);
+        credentialService.deleteCredential(credentialDeleteModel);
     }
 
 }

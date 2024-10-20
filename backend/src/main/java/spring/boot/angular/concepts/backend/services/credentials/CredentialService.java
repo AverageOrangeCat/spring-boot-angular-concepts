@@ -3,13 +3,13 @@ package spring.boot.angular.concepts.backend.services.credentials;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import spring.boot.angular.concepts.backend.exceptions.ConflictException;
-import spring.boot.angular.concepts.backend.exceptions.InternalServerException;
-import spring.boot.angular.concepts.backend.exceptions.NotFoundException;
-import spring.boot.angular.concepts.backend.exceptions.UnauthorizedException;
-import spring.boot.angular.concepts.backend.repositories.CredentialRepository;
-import spring.boot.angular.concepts.backend.repositories.SessionRepository;
-import spring.boot.angular.concepts.backend.utils.CryptoUtils;
+import spring.boot.angular.concepts.backend.infrastructure.repositories.CredentialRepository;
+import spring.boot.angular.concepts.backend.infrastructure.repositories.SessionRepository;
+import spring.boot.angular.concepts.backend.shared.exceptions.ConflictException;
+import spring.boot.angular.concepts.backend.shared.exceptions.InternalServerException;
+import spring.boot.angular.concepts.backend.shared.exceptions.NotFoundException;
+import spring.boot.angular.concepts.backend.shared.exceptions.UnauthorizedException;
+import spring.boot.angular.concepts.backend.shared.utils.CryptoUtils;
 
 @Service
 public class CredentialService {

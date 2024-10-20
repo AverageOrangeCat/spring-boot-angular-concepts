@@ -1,4 +1,4 @@
-package spring.boot.angular.concepts.backend.exceptions;
+package spring.boot.angular.concepts.backend.shared.exceptions;
 
 public class NotFoundException extends Exception {
 
