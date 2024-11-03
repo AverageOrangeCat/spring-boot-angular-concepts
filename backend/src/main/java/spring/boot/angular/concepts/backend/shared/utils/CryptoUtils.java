@@ -24,11 +24,10 @@ public class CryptoUtils {
 
             // Binary to Hex conversion
 
+            var secureRandom = SecureRandom.getInstance("NativePRNGBlocking");
             var bytes = new byte[size / 2];
 
-            SecureRandom
-                    .getInstance("NativePRNGBlocking")
-                    .nextBytes(bytes);
+            secureRandom.nextBytes(bytes);
 
             return hexFormat.formatHex(bytes);
 
@@ -40,10 +39,9 @@ public class CryptoUtils {
 
     public String generateSha256Hash(String text) throws InternalServerException {
         try {
+            var messageDigest = MessageDigest.getInstance("SHA3-256");
             var bytes = text.getBytes(StandardCharsets.UTF_8);
-            var hash = MessageDigest
-                    .getInstance("SHA3-256")
-                    .digest(bytes);
+            var hash = messageDigest.digest(bytes);
 
             return hexFormat.formatHex(hash);
 
@@ -55,10 +53,9 @@ public class CryptoUtils {
 
     public String generateSha384Hash(String text) throws InternalServerException {
         try {
+            var messageDigest = MessageDigest.getInstance("SHA3-384");
             var bytes = text.getBytes(StandardCharsets.UTF_8);
-            var hash = MessageDigest
-                    .getInstance("SHA3-384")
-                    .digest(bytes);
+            var hash = messageDigest.digest(bytes);
 
             return hexFormat.formatHex(hash);
 
@@ -70,10 +67,9 @@ public class CryptoUtils {
 
     public String generateSha512Hash(String text) throws InternalServerException {
         try {
+            var messageDigest = MessageDigest.getInstance("SHA3-512");
             var bytes = text.getBytes(StandardCharsets.UTF_8);
-            var hash = MessageDigest
-                    .getInstance("SHA3-512")
-                    .digest(bytes);
+            var hash = messageDigest.digest(bytes);
 
             return hexFormat.formatHex(hash);
 

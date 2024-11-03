@@ -7,28 +7,26 @@ public class GlobalExceptionResponse {
     private Integer statusCode = 500;
     private String message = "";
 
-    public GlobalExceptionResponse setStatusCode(Integer statusCode) {
-        this.statusCode = statusCode;
-        return this;
-    }
-
     public Integer getStatusCode() {
         return statusCode;
     }
 
-    public GlobalExceptionResponse setMessage(String message) {
-        this.message = message;
-        return this;
+    public void setStatusCode(Integer statusCode) {
+        this.statusCode = statusCode;
     }
 
     public String getMessage() {
         return message;
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     // Special method required in 'GlobalExceptionHandler.java'
 
-    public GlobalExceptionResponse setHttpStatus(HttpStatus httpStatus) {
-        return setStatusCode(httpStatus.value());
+    public void setHttpStatus(HttpStatus httpStatus) {
+        setStatusCode(httpStatus.value());
     }
 
 }

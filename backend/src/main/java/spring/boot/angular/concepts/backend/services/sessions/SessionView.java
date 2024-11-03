@@ -1,21 +1,12 @@
 package spring.boot.angular.concepts.backend.services.sessions;
 
-import java.sql.Date;
-import java.sql.Time;
-
-import spring.boot.angular.concepts.backend.services.credentials.CredentialView;
-
 public class SessionView {
-    
+
     private Long id;
 
-    private CredentialView credentialView;
+    private String sessionToken;
 
-    private String authenticationToken;
-
-    private Date expirationDate;
-
-    private Time expirationTime;
+    private Long expirationUnixDate;
 
     public Long getId() {
         return id;
@@ -25,36 +16,20 @@ public class SessionView {
         this.id = id;
     }
 
-    public CredentialView getCredentialView() {
-        return credentialView;
+    public String getSessionToken() {
+        return sessionToken;
     }
 
-    public void setCredentialView(CredentialView credentialView) {
-        this.credentialView = credentialView;
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 
-    public String getAuthenticationToken() {
-        return authenticationToken;
+    public Long getExpirationUnixDate() {
+        return expirationUnixDate;
     }
 
-    public void setAuthenticationToken(String authenticationToken) {
-        this.authenticationToken = authenticationToken;
-    }
-
-    public Date getExpirationDate() {
-        return expirationDate;
-    }
-
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Time getExpirationTime() {
-        return expirationTime;
-    }
-
-    public void setExpirationTime(Time expirationTime) {
-        this.expirationTime = expirationTime;
+    public void setExpirationUnixDate(Long expirationUnixDate) {
+        this.expirationUnixDate = expirationUnixDate;
     }
 
 }

@@ -1,15 +1,9 @@
-CREATE TABLE sessions (
+CREATE TABLE "sessions" (
     "session_id" SERIAL PRIMARY KEY,
 
-    -- foreign keys
+    -- Session data
 
-    "credential_id" INTEGER NOT NULL REFERENCES credentials (credential_id) ON DELETE CASCADE,
+    "session_token" VARCHAR(128) UNIQUE NOT NULL,
 
-    -- session data
-
-    "authentication_token" VARCHAR(128) UNIQUE NOT NULL,
-
-    "expiration_date" DATE NOT NULL,
-
-    "expiration_time" TIME NOT NULL
+    "expiration_unix_date" INTEGER NOT NULL
 );

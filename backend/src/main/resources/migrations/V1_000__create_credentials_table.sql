@@ -1,7 +1,7 @@
-CREATE TABLE credentials (
-    "credential_id" SERIAL PRIMARY KEY,
+CREATE TABLE "credentials" (
+    "credentials_id" SERIAL PRIMARY KEY,
 
-    -- account data
+    -- Account data
 
     "email" VARCHAR(64) UNIQUE NOT NULL,
 
@@ -9,7 +9,7 @@ CREATE TABLE credentials (
 
     "password_hash" VARCHAR(64) NOT NULL,
 
-    -- personal data
+    -- Personal data
 
     "first_name" VARCHAR(128) NOT NULL,
 
@@ -17,7 +17,7 @@ CREATE TABLE credentials (
 
     "birth_date" DATE NOT NULL,
 
-    -- location
+    -- Location
 
     "address" VARCHAR(256) NOT NULL,
 

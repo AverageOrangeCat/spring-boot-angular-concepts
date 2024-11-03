@@ -1,7 +1,7 @@
-package spring.boot.angular.concepts.backend.services.sessions;
+package spring.boot.angular.concepts.backend.services.credentials;
 
-public class SessionDeleteModel {
-    
+public class CredentialsDeleteModel {
+
     private String authenticationToken;
 
     public String getAuthenticationToken() {

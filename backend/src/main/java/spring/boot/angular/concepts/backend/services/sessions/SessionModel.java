@@ -1,38 +1,25 @@
 package spring.boot.angular.concepts.backend.services.sessions;
 
-import java.sql.Date;
-import java.sql.Time;
-
 public class SessionModel {
-    
-    private String authenticationToken;
 
-    private Date expirationDate;
+    private String sessionToken;
 
-    private Time expirationTime;
+    private Long expirationUnixDate;
 
-    public String getAuthenticationToken() {
-        return authenticationToken;
+    public String getSessionToken() {
+        return sessionToken;
     }
 
-    public void setAuthenticationToken(String authenticationToken) {
-        this.authenticationToken = authenticationToken;
+    public void setSessionToken(String sessionToken) {
+        this.sessionToken = sessionToken;
     }
 
-    public Date getExpirationDate() {
-        return expirationDate;
+    public Long getExpirationUnixDate() {
+        return expirationUnixDate;
     }
 
-    public void setExpirationDate(Date expirationDate) {
-        this.expirationDate = expirationDate;
-    }
-
-    public Time getExpirationTime() {
-        return expirationTime;
-    }
-
-    public void setExpirationTime(Time expirationTime) {
-        this.expirationTime = expirationTime;
+    public void setExpirationUnixDate(Long expirationUnixDate) {
+        this.expirationUnixDate = expirationUnixDate;
     }
 
 }

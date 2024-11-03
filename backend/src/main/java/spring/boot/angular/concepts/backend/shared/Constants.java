@@ -1,0 +1,11 @@
+package spring.boot.angular.concepts.backend.shared;
+
+public class Constants {
+
+    // Session
+
+    public static final Integer EXPIRATION_TIME_BUFFER = 2 * 24 * 60 * 60 * 100;
+
+    public static final Integer COOKIE_RENEWAL_TIME_BUFFER = 1 * 24 * 60 * 60 * 100;
+
+}

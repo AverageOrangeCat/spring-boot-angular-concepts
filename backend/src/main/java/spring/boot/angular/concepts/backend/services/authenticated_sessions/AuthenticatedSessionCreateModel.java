@@ -1,7 +1,7 @@
-package spring.boot.angular.concepts.backend.services.sessions;
+package spring.boot.angular.concepts.backend.services.authenticated_sessions;
 
-public class SessionCreateModel {
-    
+public class AuthenticatedSessionCreateModel {
+
     private String email;
 
     private String password;
